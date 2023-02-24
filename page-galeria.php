@@ -39,7 +39,9 @@
                             ?>
 
                                 <li>
-                                    <a href="<?php echo $galeriaImagenssGrande ;?>"> <img src="<?php  echo $galeriaImagenssFull; ?>" alt="image-galeria-<?php echo $id;?>"></a>
+                                    <a data-lightbox="galeria" href="<?php echo $galeriaImagenssGrande ;?>">
+                                     <img src="<?php  echo $galeriaImagenssFull; ?>" alt="image-galeria-<?php echo $id;?>">
+                                    </a>
                                 </li>
 
 

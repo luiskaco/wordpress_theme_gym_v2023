@@ -11,5 +11,9 @@ while(have_posts()) : the_post();
             
         endif;
 
+        // if(is_page('contacto')){
+        //     the_field('ubicacion');
+        // }
+
         the_content();
  endwhile;?>

@@ -266,6 +266,30 @@ img{
     overflow: hidden !important;
 }
 
+/** categorias en cards **/
+.card .post-categories {
+    position:absolute;
+    top:2rem; 
+    left:2rem;
+    display: flex;
+    gap:2rem;
+}
+
+.card .post-categories li {
+    background-color: var(--primario);
+    padding: .5rem  1rem;
+    border-radius: .5rem;
+
+}
+
+.card .post-categories a {
+    color: var(--blanco);
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    font-weight: 900;
+}
+
+/** end categoria **/
 .card:hover img{
     transform: scale(1.1);
 }
@@ -292,8 +316,18 @@ img{
     margin: 0;
 }
 
-.card .contenido p{
+.card .contenido p, 
+.card .contenido .meta a {
     color: var(--blanco);
+}
+
+.card .meta { 
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.card .meta span {
+    color: var(--primario);
 }
 
 /* sidebar */
@@ -394,4 +428,80 @@ img{
 .galeria-imagenes img{ 
     object-fit: cover;
     height: 300px;
+}
+
+/** Informacion meta **/
+
+.meta-info {
+    background-color: var(--gris-claro);
+    padding: 2rem;
+}
+
+@media(min-width:992px){
+    .meta-info {
+            display: flex;
+            justify-content: space-between;
+    }
+}
+
+.meta-info p,
+.meta-info a
+{
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--negro);
+}
+
+.meta-info span {
+    color: var(--primario);
+}
+
+.meta-info .categoria {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+
+/** Formulario de contacto **/
+
+.wpcf7-form label {
+    font-weight: 700;
+}
+
+.wpcf7-form .wpcf7-form-control {
+    width:100%;
+    border:1px solid var(--gris-claro);
+    padding: 1rem;
+}
+
+.wpcf7-form .wpcf7-submit {
+    background-color: var(--primario);
+    font-size: 2rem;
+    font-family: var(--fuente-headings);
+    padding: 1.2rem;
+    color: var(--blanco);
+}
+
+.wpcf7-form .wpcf7-submit:hover {
+    cursor: pointer;
+}
+.wpcf7-form .wpcf7-not-valid-tip{
+    background-color: rgb(200, 6, 6);
+    color: var(--blanco);
+    padding: 1.5rem 0;
+    margin: .5rem 0;
+    display: block;
+    font-size: 1.4rem;
+}
+
+.wpcf7-form .wpcf7-spinner {
+        margin: 2rem auto 0 auto;
+        display: block;
+        background-color: var(--primario);
+        opacity: 1;
+}
+
+.mapa {
+    margin-bottom: 5rem;
 }

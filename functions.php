@@ -36,8 +36,19 @@ add_action('init', 'gymfitness_menus');
 // Habilitamos estilos
 function gymfitness_scripts_styles()  {
 
+    // Archivo css
+
     wp_enqueue_style('normalize', 'https://necolas.github.io/normalize.css/8.0.1/normalize.css', array(), '8.0.1');
-    wp_enqueue_style('style', get_stylesheet_uri(), array('normalize'), '1.0.12');
+
+    // Add ligbox
+    wp_enqueue_style('lightboxCss', get_template_directory_uri() .'/css/lightbox.min.css', array(), '2.11.3');
+
+    wp_enqueue_style('style', get_stylesheet_uri(), array('normalize'), '1.0.20');
+
+
+    // Archivos JS
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('lightboxJs',  get_template_directory_uri().'/JS/lightbox.min.js', array('jquery'), '2.11.3', true);
 
 }
 
@@ -67,3 +78,30 @@ function gymfitness_widgets() {
 }
 
 add_action('widgets_init', 'gymfitness_widgets');
+
+
+// Crear shortcode 
+
+function gymfitness_ubicacion_shortcode(){
+     ?> 
+        <div class="mapa"> 
+            <?php 
+                if(is_page('contacto')){
+                    the_field('ubicacion');
+                }
+            ?>
+        </div>
+
+
+        <h2 class="text-center text-primary">
+            Formulario de Contacto
+        </h2>
+     <?php
+
+     
+
+    // Re renderizar shortcode
+    echo do_shortcode('[contact-form-7 id="81" title="Formulario de contacto 1"]');
+}
+
+add_shortcode('gymfitness_ubicacion','gymfitness_ubicacion_shortcode');
