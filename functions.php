@@ -2,6 +2,8 @@
 
 // Importamos widgets
 require get_template_directory() . '/includes/widgets.php';
+require get_template_directory() . '/includes/queries.php';
+
 
 
 // Habiliar imagen destacado
@@ -43,7 +45,7 @@ function gymfitness_scripts_styles()  {
     // Add ligbox
     wp_enqueue_style('lightboxCss', get_template_directory_uri() .'/css/lightbox.min.css', array(), '2.11.3');
 
-    wp_enqueue_style('style', get_stylesheet_uri(), array('normalize'), '1.0.20');
+    wp_enqueue_style('style', get_stylesheet_uri(), array('normalize'), '2.0.2');
 
 
     // Archivos JS
