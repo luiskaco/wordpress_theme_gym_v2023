@@ -44,14 +44,25 @@ function gymfitness_scripts_styles()  {
 
     // Add ligbox
     wp_enqueue_style('lightboxCss', get_template_directory_uri() .'/css/lightbox.min.css', array(), '2.11.3');
-
-    wp_enqueue_style('style', get_stylesheet_uri(), array('normalize'), '2.0.2');
+    
+    wp_enqueue_style('swipperCss', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css', array(), '9.1.0');
+    
+    // importando css swipper
+    wp_enqueue_style('style', get_stylesheet_uri(), array('normalize'), '2.0.12');
 
 
     // Archivos JS
     wp_enqueue_script('jquery');
     wp_enqueue_script('lightboxJs',  get_template_directory_uri().'/JS/lightbox.min.js', array('jquery'), '2.11.3', true);
+    
+    //Importando swipper
+    wp_enqueue_script('swipperJs',  'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js', array(), '9.1.0', true);
+    
+    wp_enqueue_script('animeJs',  'https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js', array(), '2.0.2', true);
 
+
+    //Importanod scripps
+    wp_enqueue_script('scripts', get_template_directory_uri() . '/js/scripts.js', array('swipperJs','animeJs'), '1.0.2', true);
 }
 
 add_action('wp_enqueue_scripts', 'gymfitness_scripts_styles');
@@ -94,16 +105,62 @@ function gymfitness_ubicacion_shortcode(){
             ?>
         </div>
 
-
         <h2 class="text-center text-primary">
             Formulario de Contacto
         </h2>
      <?php
 
-     
-
+    
     // Re renderizar shortcode
     echo do_shortcode('[contact-form-7 id="81" title="Formulario de contacto 1"]');
 }
 
 add_shortcode('gymfitness_ubicacion','gymfitness_ubicacion_shortcode');
+
+
+/* IMAGENES DINAMICAS COMO BACKGROUND */
+
+
+function gymfitness_hero_imagen() {
+    // Obtener el ID de la pagina de inciio
+
+    $front_id = get_option('page_on_front');  // Obtenemos el id de la pagina principal
+    // get_option consulta el archivo /options.php
+
+    // var_dump( $front_id );
+
+    // Obtener la imagene
+    $imagen_id = get_field('hero_imagen', $front_id);  // Pasamos el ID de la pagina 
+
+    // var_dump($imagen_id);
+
+    // Obtener la ruta de la imagen
+
+    $imagePAth = wp_get_attachment_image_src($imagen_id,'full')[0];
+
+    // var_dump($imagePAth);
+    
+    // Crear el css
+    wp_register_style('custome', false); // Registra pero le decimos que no existe
+            //Creando una hoja de estilo virtual
+
+    wp_enqueue_style('custome'); // La agregamos
+
+    $imagen_destacada_css = "
+        body.home .header {
+            background-image: linear-gradient( rgb(0 0 0 / .75), rgb(0 0 0 / .75)), url($imagePAth);
+        }
+    ";
+
+
+    // Inyectar el csss
+
+    wp_add_inline_style('custome', $imagen_destacada_css);
+
+
+}
+
+add_action('init', 'gymfitness_hero_imagen' );
+
+
+
